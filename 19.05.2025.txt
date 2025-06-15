@@ -1,0 +1,64 @@
+/*Delete , Drop and Truncate
+# Drop - DDL( Completely drop database, Table, Column)
+Syntax: Drop table TableName;
+# Delete - 
+Syntax: delete from table_name where condition;
+#Truncate
+Syntax: Truncate table table_name;
+Using Truncate we can't go back to the previous state using rollback etc.
+*/
+
+show databases;
+use vit;
+show tables from vit;
+Create table vit_ap(mame varchar(30), reg_no varchar(20), school varchar(100), graduation_year int);
+desc vit_ap;
+drop table vit_ap;
+INSERT INTO vit_ap(mame, reg_no, school, graduation_year) values
+('Laxman P', '22bce20455', 'School of Computer Science', 2026),
+('TAMSA SANDEEP KARWA', '22BAI10300', 'CSE and IT', 2026),
+('Yahya Farid Khwaja', '22BAI1119', 'CSE and IT', 2026),
+('Dhanushkumar V', '22BAI1134', 'CSE and IT', 2026),
+('Morimisetty Divyasri', '22BCE20263', 'CSE and IT', 2026),
+('Jeffin A I', '22BLC1162', 'Core Engineering', 2026),
+('ARPIT PATTANAIK', '23BHI10081', 'CSE and IT', 2027),
+('Bipanchi Kalita', '24BOE10046', 'BioTech Based', 2028);
+delete from vit_ap where reg_no = '22BCE9891';
+select * FROM vit_ap;
+truncate table vit_ap;
+
+/* Transaction Controls
+commit - Fix the changes
+rollback - reverse the controls until the previous commit.
+save point - We can save the transaction until the moment using different names. 
+*/
+create table cse(
+id int, 
+name varchar(25)
+);
+start transaction;
+insert into cse values(1001, 'Jayant');
+savepoint a11;
+insert into cse values(1002, 'Praveen');
+commit;
+savepoint a12;
+delete from cse where id= 1002;
+
+select * from cse;
+rollback to a12;
+rollback to a11;
+drop table cse;
+select id as no from cse;
+desc cse;
+
+# Operator - logical and compare
+select * from vit_ap;
+select mame from vit_ap where graduation_year>2026;
+select mame from vit_ap where graduation_year>=2026;
+select mame from vit_ap where graduation_year<2026;
+select mame from vit_ap where graduation_year<=2026;
+select mame from vit_ap where graduation_year=2026;
+select reg_no from vit_ap where graduation_year = 2026 and school = 'CSE and IT';
+select reg_no from vit_ap where graduation_year = 2026 or school = 'CSE and IT';
+select mame from vit_ap where graduation_year in (2026, 2027);
+select mame from vit_ap where graduation_year not in (2026, 2027);

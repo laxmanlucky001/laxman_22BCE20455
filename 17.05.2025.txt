@@ -1,0 +1,26 @@
+show databases;
+create database vit;
+use vit;
+CREATE TABLE vit(
+name VARCHAR(30),
+reg_no varchar(20) primary key,
+school varchar(100),
+graduation_year int
+);
+desc vit;
+INSERT INTO vit(name, reg_no, school, graduation_year) values
+('Laxman P', '22bce20455', 'School of Computer Science', 2026),
+('TAMSA SANDEEP KARWA', '22BAI10300', 'CSE and IT', 2026),
+('Yahya Farid Khwaja', '22BAI1119', 'CSE and IT', 2026),
+('Dhanushkumar V', '22BAI1134', 'CSE and IT', 2026),
+('Morimisetty Divyasri', '22BCE20263', 'CSE and IT', 2026),
+('Jeffin A I', '22BLC1162', 'Core Engineering', 2026),
+('ARPIT PATTANAIK', '23BHI10081', 'CSE and IT', 2027),
+('Bipanchi Kalita', '24BOE10046', 'BioTech Based', 2028);
+
+SELECT * FROM vit;
+alter table vit add column phone_no int;
+desc vit;
+alter table vit drop column phone_no;
+alter table vit add column country varchar(20) default 'India';
+update vit set school = 'CSE and IT' WHERE reg_no = '22BCE20455';
